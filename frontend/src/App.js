@@ -99,11 +99,7 @@ function App() {
                   <Link to={`#`}>Cartão de presente</Link>
                 </p>
                 <p>
-                  <a
-                    href='#'
-                    class='link-secondary link-offset-2 link-underline-opacity-0  '>
-                    Estação de Trabalho
-                  </a>
+                  <Link to={`#`}>Estação de Trabalho</Link>
                 </p>
                 <p>
                   <Link to={`#`}>Eletrônicos</Link>
@@ -118,46 +114,22 @@ function App() {
               <div>
                 <h6>Resources</h6>
                 <p>
-                  <a
-                    href='#'
-                    class='link-secondary link-offset-2 link-underline-opacity-0  '>
-                    Support
-                  </a>
+                  <Link to={`#`}>Support</Link>
                 </p>
                 <p>
-                  <a
-                    href='#'
-                    class='link-secondary link-offset-2 link-underline-opacity-0  '>
-                    Returns
-                  </a>
+                  <Link to={`#`}>Returns</Link>
                 </p>
                 <p>
-                  <a
-                    href='#'
-                    class='link-secondary link-offset-2 link-underline-opacity-0  '>
-                    FAQ
-                  </a>
+                  <Link to={`#`}>Faq</Link>
                 </p>
                 <p>
-                  <a
-                    href='#'
-                    class='link-secondary link-offset-2 link-underline-opacity-0  '>
-                    Privacy
-                  </a>
+                  <Link to={`#`}>Privacy</Link>
                 </p>
                 <p>
-                  <a
-                    href='#'
-                    class='link-secondary link-offset-2 link-underline-opacity-0  '>
-                    Patents
-                  </a>
+                  <Link to={`#`}>Patents</Link>
                 </p>
                 <p>
-                  <a
-                    href='#'
-                    class='link-secondary link-offset-2 link-underline-opacity-0  '>
-                    Terms & Conditions
-                  </a>
+                  <Link to={`#`}>Termos </Link>
                 </p>
               </div>
               <div class='col p-4 m-4'>
