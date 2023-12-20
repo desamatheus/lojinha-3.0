@@ -5,8 +5,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Product from '../components/Product';
 import { Helmet } from 'react-helmet-async';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
+import LoadingBox from '../atoms/Loading';
+import MessageBox from '../atoms/MessageBox';
 // import data from '../data';
 
 const reducer = (state, action) => {
@@ -46,9 +46,9 @@ function HomeScreen() {
   return (
     <div>
       <Helmet>
-        <title>Amazona</title>
+        <title>Lojinha 3.0</title>
       </Helmet>
-      <h1>Featured Products</h1>
+      <h1>Produtos em destaque</h1>
       <div className='products'>
         {loading ? (
           <LoadingBox />

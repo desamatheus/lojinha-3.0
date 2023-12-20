@@ -9,10 +9,10 @@ import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import Rating from '../components/Rating';
 import { Helmet } from 'react-helmet-async';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
+import LoadingBox from '../atoms/Loading';
+import MessageBox from '../atoms/MessageBox';
 import { getError } from '../utils';
-import { Store } from '../Store';
+import { Store } from '../../Store';
 
 const reducer = (state, action) => {
   switch (action.type) {
