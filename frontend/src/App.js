@@ -1,37 +1,75 @@
+import data from './data';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
-import HomeScreen from './components/screens/HomeScreen';
-import ProductScreen from './components/screens/ProductScreen';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import HomeScreen from './components/pages/Home';
+import ProductScreen from './components/pages/ProductScreen';
 import Navbar from 'react-bootstrap/Navbar';
 import Badge from 'react-bootstrap/Badge';
 import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useContext } from 'react';
 import { Store } from './Store';
-import CartScreen from './components/screens/CartScreen';
-import SigninScreen from './components/screens/SigninScreen';
+import CartScreen from './components/pages/CartScreen';
+import SigninScreen from './components/pages/SigninScreen';
+import ShippingAddressScreen from './components/pages/ShippingAddressScreen';
+import SignupScreen from './components/pages/SignupScreen';
+import PaymentMethodScreen from './components/pages/PaymentMethodScreen';
+import PlaceOrderScreen from './components/pages/PlaceOrderScreen';
+import OrderScreen from './components/pages/OrderScreen';
 
 function App() {
-  const { state } = useContext(Store);
-  const { cart } = state;
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { cart, userInfo } = state;
+
+  const signoutHandler = () => {
+    ctxDispatch({ type: 'USER_SIGNOUT' });
+    localStorage.removeItem('userInfo');
+    localStorage.removeItem('shippingAddress');
+    localStorage.removeItem('paymentMethod');
+  };
   return (
     <BrowserRouter>
       <div className='d-flex flex-column site-container'>
+        <ToastContainer position='bottom-center' limit={1} />
         <header>
           <Navbar bg='dark' variant='dark'>
             <Container>
               <LinkContainer to='/'>
-                <Navbar.Brand>amazona</Navbar.Brand>
+                <Navbar.Brand>lojinha 3.0</Navbar.Brand>
               </LinkContainer>
               <Nav className='me-auto'>
                 <Link to='/cart' className='nav-link'>
-                  Cart
+                  Carrinho
                   {cart.cartItems.length > 0 && (
                     <Badge pill bg='danger'>
                       {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
                     </Badge>
                   )}
                 </Link>
+                {userInfo ? (
+                  <NavDropdown title={userInfo.name} id='basic-nav-dropdown'>
+                    <LinkContainer to='/profile'>
+                      <NavDropdown.Item>Perfil do usuario</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to='/orderhistory'>
+                      <NavDropdown.Item>Order History</NavDropdown.Item>
+                    </LinkContainer>
+                    <NavDropdown.Divider />
+                    <Link
+                      className='dropdown-item'
+                      to='#signout'
+                      onClick={signoutHandler}>
+                      Sign Out
+                    </Link>
+                  </NavDropdown>
+                ) : (
+                  <Link className='nav-link' to='/signin'>
+                    Sign In
+                  </Link>
+                )}
               </Nav>
             </Container>
           </Navbar>
@@ -39,119 +77,109 @@ function App() {
         <main>
           <Container className='mt-3'>
             <Routes>
-              <Route path='/cart' element={<CartScreen />} />
               <Route path='/product/:slug' element={<ProductScreen />} />
+              <Route path='/cart' element={<CartScreen />} />
+              <Route path='/signin' element={<SigninScreen />} />
+              <Route path='/signup' element={<SignupScreen />} />
+              <Route path='/placeorder' element={<PlaceOrderScreen />} />
+              <Route path='/order/:id' element={<OrderScreen />}></Route>
+              <Route path='/shipping' element={<ShippingAddressScreen />} />
+              <Route path='/payment' element={<PaymentMethodScreen />} />
+
               <Route path='/' element={<HomeScreen />} />
             </Routes>
           </Container>
         </main>
         <footer>
-          <div className='text-center'>All rights reserved</div>
+          <div>
+            <div>
+              <div>
+                <h6>Compre por Categoria</h6>
+                <p>
+                  <Link to={`#`}>Cartão de presente</Link>
+                </p>
+                <p>
+                  <a
+                    href='#'
+                    class='link-secondary link-offset-2 link-underline-opacity-0  '>
+                    Estação de Trabalho
+                  </a>
+                </p>
+                <p>
+                  <Link to={`#`}>Eletrônicos</Link>
+                </p>
+              </div>
+              <div>
+                <h6>Aprenda</h6>
+                <p>
+                  <Link to={`#`}>Sobre nós</Link>
+                </p>
+              </div>
+              <div>
+                <h6>Resources</h6>
+                <p>
+                  <a
+                    href='#'
+                    class='link-secondary link-offset-2 link-underline-opacity-0  '>
+                    Support
+                  </a>
+                </p>
+                <p>
+                  <a
+                    href='#'
+                    class='link-secondary link-offset-2 link-underline-opacity-0  '>
+                    Returns
+                  </a>
+                </p>
+                <p>
+                  <a
+                    href='#'
+                    class='link-secondary link-offset-2 link-underline-opacity-0  '>
+                    FAQ
+                  </a>
+                </p>
+                <p>
+                  <a
+                    href='#'
+                    class='link-secondary link-offset-2 link-underline-opacity-0  '>
+                    Privacy
+                  </a>
+                </p>
+                <p>
+                  <a
+                    href='#'
+                    class='link-secondary link-offset-2 link-underline-opacity-0  '>
+                    Patents
+                  </a>
+                </p>
+                <p>
+                  <a
+                    href='#'
+                    class='link-secondary link-offset-2 link-underline-opacity-0  '>
+                    Terms & Conditions
+                  </a>
+                </p>
+              </div>
+              <div class='col p-4 m-4'>
+                <h6>Contact Us</h6>
+                <p>312-549-8984</p>
+                <p>2045 W Grand Ave</p>
+                <p>Chicago, Illinois 60612</p>
+                <p>support@humancentric.com</p>
+              </div>
+            </div>
+
+            <nav class='footerLinks'>
+              <a href='#'>facebook</a>
+              <a href='#'>Twitter</a>
+              <a href='#'>Printerest</a>
+              <a href='#'>Instagram</a>
+              <a href='#'>Youtube</a>
+            </nav>
+          </div>
         </footer>
       </div>
     </BrowserRouter>
   );
 }
-
 export default App;
-
-// import data from './data';
-// import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
-// import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-// import HomeScreen from './components/pages/Home';
-// import ProductScreen from './components/pages/ProductScreen';
-// import Navbar from 'react-bootstrap/Navbar';
-// import Badge from 'react-bootstrap/Badge';
-// import Nav from 'react-bootstrap/Nav';
-// import NavDropdown from 'react-bootstrap/NavDropdown';
-// import Container from 'react-bootstrap/Container';
-// import { LinkContainer } from 'react-router-bootstrap';
-// import { useContext } from 'react';
-// import { Store } from './Store';
-// import CartScreen from './components/pages/CartScreen';
-// import SigninScreen from './components/pages/SigninScreen';
-// import ShippingAddressScreen from './components/pages/ShippingAddressScreen';
-// import SignupScreen from './components/pages/SignupScreen';
-// import PaymentMethodScreen from './components/pages/PaymentMethodScreen';
-// import PlaceOrderScreen from './components/pages/PlaceOrderScreen';
-// import OrderScreen from './components/pages/OrderScreen';
-
-// function App() {
-//   const { state, dispatch: ctxDispatch } = useContext(Store);
-//   const { cart, userInfo } = state;
-
-//   const signoutHandler = () => {
-//     ctxDispatch({ type: 'USER_SIGNOUT' });
-//     localStorage.removeItem('userInfo');
-//     localStorage.removeItem('shippingAddress');
-//     localStorage.removeItem('paymentMethod');
-//   };
-//   return (
-//     <BrowserRouter>
-//       <div className='d-flex flex-column site-container'>
-//         <ToastContainer position='bottom-center' limit={1} />
-//         <header>
-//           <Navbar bg='dark' variant='dark'>
-//             <Container>
-//               <LinkContainer to='/'>
-//                 <Navbar.Brand>lojinha 3.0</Navbar.Brand>
-//               </LinkContainer>
-//               <Nav className='me-auto'>
-//                 <Link to='/cart' className='nav-link'>
-//                   Carrinho
-//                   {cart.cartItems.length > 0 && (
-//                     <Badge pill bg='danger'>
-//                       {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
-//                     </Badge>
-//                   )}
-//                 </Link>
-//                 {userInfo ? (
-//                   <NavDropdown title={userInfo.name} id='basic-nav-dropdown'>
-//                     <LinkContainer to='/profile'>
-//                       <NavDropdown.Item>User Profile</NavDropdown.Item>
-//                     </LinkContainer>
-//                     <LinkContainer to='/orderhistory'>
-//                       <NavDropdown.Item>Order History</NavDropdown.Item>
-//                     </LinkContainer>
-//                     <NavDropdown.Divider />
-//                     <Link
-//                       className='dropdown-item'
-//                       to='#signout'
-//                       onClick={signoutHandler}>
-//                       Sign Out
-//                     </Link>
-//                   </NavDropdown>
-//                 ) : (
-//                   <Link className='nav-link' to='/signin'>
-//                     Sign In
-//                   </Link>
-//                 )}
-//               </Nav>
-//             </Container>
-//           </Navbar>
-//         </header>
-//         <main>
-//           <Container className='mt-3'>
-//             <Routes>
-//               <Route path='/product/:slug' element={<ProductScreen />} />
-//               <Route path='/cart' element={<CartScreen />} />
-//               <Route path='/signin' element={<SigninScreen />} />
-//               <Route path='/signup' element={<SignupScreen />} />
-//               <Route path='/placeorder' element={<PlaceOrderScreen />} />
-//               <Route path='/order/:id' element={<OrderScreen />}></Route>
-//               <Route path='/shipping' element={<ShippingAddressScreen />} />
-//               <Route path='/payment' element={<PaymentMethodScreen />} />
-
-//               <Route path='/' element={<HomeScreen />} />
-//             </Routes>
-//           </Container>
-//         </main>
-//         <footer>
-//           <div className='text-center'>All rights reserved</div>
-//         </footer>
-//       </div>
-//     </BrowserRouter>
-//   );
-// }
-// export default App;
