@@ -7,11 +7,11 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
-import Rating from '../components/Rating';
+import Rating from '../atoms/Rating';
 import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../atoms/Loading';
 import MessageBox from '../atoms/MessageBox';
-import { getError } from '../utils';
+import { getError } from '../../utils';
 import { Store } from '../../Store';
 
 const reducer = (state, action) => {

@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import LoadingBox from '../atoms/Loading';
 import MessageBox from '../atoms/MessageBox';
 import { Store } from '../../Store';
-import { getError } from '../utils';
+import { getError } from '../../utils';
 
 function reducer(state, action) {
   switch (action.type) {

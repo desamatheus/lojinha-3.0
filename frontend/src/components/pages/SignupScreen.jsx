@@ -8,7 +8,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Store } from '../../Store';
 
 import { toast } from 'react-toastify';
-import { getError } from '../utils';
+import { getError } from '../../utils';
 
 export default function SignupScreen() {
   const navigate = useNavigate();
