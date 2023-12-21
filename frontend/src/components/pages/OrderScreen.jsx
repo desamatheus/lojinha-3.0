@@ -122,7 +122,7 @@ export default function OrderScreen() {
                       <Col md={3}>
                         <span>{item.quantity}</span>
                       </Col>
-                      <Col md={3}>${item.price}</Col>
+                      <Col md={3}>R${item.price}</Col>
                     </Row>
                   </ListGroup.Item>
                 ))}
@@ -138,19 +138,25 @@ export default function OrderScreen() {
                 <ListGroup.Item>
                   <Row>
                     <Col>Items</Col>
-                    <Col>${Number(order.itemsPrice).toFixed(2)}</Col>
+                    <Col>R${Number(order.itemsPrice).toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>Shipping</Col>
-                    <Col>${order.shippingPrice.toFixed(2)}</Col>
+                    <Col>R${order.shippingPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>Tax</Col>
-                    <Col>${order.taxPrice.toFixed(2)}</Col>
+                    <Col>R${order.taxPrice.toFixed(2)}</Col>
+                  </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Row>
+                    <Col>discount</Col>
+                    <Col>R${order.discount.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
@@ -159,7 +165,7 @@ export default function OrderScreen() {
                       <strong> Order Total</strong>
                     </Col>
                     <Col>
-                      <strong>${order.totalPrice.toFixed(2)}</strong>
+                      <strong>R${order.totalPrice.toFixed(2)}</strong>
                     </Col>
                   </Row>
                 </ListGroup.Item>

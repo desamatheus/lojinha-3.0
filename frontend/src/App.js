@@ -49,6 +49,7 @@ function App() {
                     </Badge>
                   )}
                 </Link>
+
                 {userInfo ? (
                   <NavDropdown title={userInfo.name} id='basic-nav-dropdown'>
                     <LinkContainer to='/profile'>
@@ -92,62 +93,23 @@ function App() {
         </main>
         <footer>
           <div>
-            <div>
-              <div>
-                <h6>Compre por Categoria</h6>
-                <p>
-                  <Link to={`#`}>Cartão de presente</Link>
-                </p>
-                <p>
-                  <Link to={`#`}>Estação de Trabalho</Link>
-                </p>
-                <p>
-                  <Link to={`#`}>Eletrônicos</Link>
-                </p>
-              </div>
-              <div>
-                <h6>Aprenda</h6>
-                <p>
-                  <Link to={`#`}>Sobre nós</Link>
-                </p>
-              </div>
-              <div>
-                <h6>Resources</h6>
-                <p>
-                  <Link to={`#`}>Support</Link>
-                </p>
-                <p>
-                  <Link to={`#`}>Returns</Link>
-                </p>
-                <p>
-                  <Link to={`#`}>Faq</Link>
-                </p>
-                <p>
-                  <Link to={`#`}>Privacy</Link>
-                </p>
-                <p>
-                  <Link to={`#`}>Patents</Link>
-                </p>
-                <p>
-                  <Link to={`#`}>Termos </Link>
-                </p>
-              </div>
-              <div class='col p-4 m-4'>
-                <h6>Contact Us</h6>
-                <p>312-549-8984</p>
-                <p>2045 W Grand Ave</p>
-                <p>Chicago, Illinois 60612</p>
-                <p>support@humancentric.com</p>
-              </div>
-            </div>
-
-            <nav class='footerLinks'>
-              <a href='#'>facebook</a>
-              <a href='#'>Twitter</a>
-              <a href='#'>Printerest</a>
-              <a href='#'>Instagram</a>
-              <a href='#'>Youtube</a>
-            </nav>
+            <Nav className='d-flex justify-content-center'>
+              <Link to='#' className='p-2'>
+                Facebook
+              </Link>
+              <Link to='#' className='p-2'>
+                Twitter
+              </Link>
+              <Link to='#' className='p-2'>
+                Pinterest
+              </Link>
+              <Link to='#' className='p-2'>
+                Instagram
+              </Link>
+              <Link to='#' className='p-2'>
+                Youtube
+              </Link>
+            </Nav>
           </div>
         </footer>
       </div>

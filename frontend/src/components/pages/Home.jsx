@@ -7,8 +7,8 @@ import Product from '../molecules/Product';
 import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../atoms/Loading';
 import MessageBox from '../atoms/MessageBox';
-// import data from '../data';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './home.css';
 const reducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_REQUEST':
@@ -48,6 +48,9 @@ function HomeScreen() {
       <Helmet>
         <title>Lojinha 3.0</title>
       </Helmet>
+      <div class='headerBack text-center '>
+        <img className='img-large' src={`images/Logo.png`} alt={`logo`}></img>
+      </div>
       <h1>Produtos em destaque</h1>
       <div className='products'>
         {loading ? (
@@ -64,7 +67,6 @@ function HomeScreen() {
           </Row>
         )}
       </div>
-      <p>essa e ahome </p>
     </div>
   );
 }

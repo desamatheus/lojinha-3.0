@@ -1,0 +1,12 @@
+.headerBack {
+  background-image: url('../../../public/images/BackGround.png');
+  background-size: cover;
+
+  background-position: center;
+  height: 400px;
+  color: #ffffff; /* Cor do texto branca */
+  text-align: center;
+  padding: 60px;
+  z-index: 0;
+  margin: 0px 0px 0px 0px;
+}
